@@ -4,15 +4,15 @@ function moduleProject3() {
 
   function buildNav(links) {
     //  ✨ do your magic here
-    const container = document.createElement('nav') // create a nav element
+    const card = document.createElement('nav') // create a nav element
     links.forEach(link => { // loop through the links array
       const a = document.createElement('a') // create an anchor element
       a.href = link.href // set the href attribute
       a.title = link.title // set the title attribute
       a.textContent = link.textContent // set the text content
-      container.appendChild(a) // append the anchor element to the nav element
+      card.appendChild(a) // append the anchor element to the nav element
     }) // add closing parenthesis for the forEach loop
-      return container // return the nav element
+      return card // return the nav element
   }
 
     // ❗ DOM creation using your `buildNav` component (do not change):
@@ -28,9 +28,33 @@ function moduleProject3() {
 
   function buildLearnerCard(learner, languages) {
     //  ✨ do your magic here
+    const card = document.createElement('div') // create a div element
+    card.classList.add = 'Learner Card' // set the text content of the div element
+    
+    const nameP = document.createElement('p') // create a p element
+    nameP.textContent = learner.fullName // set the text content of the p element
+
+    const idElement = document.createElement('p') // create a p element
+    idElement.textContent = `Learner ID: ${learner.id}` // set the text content of the p element
+
+    const dobP = document.createElement('p') // create a p element
+    dobP.textContent = `DOB: ${learner.dateOfBirth}` // set the text content of the p element
+    
+    const favLangP = document.createElement('p') // create a p element
+    const favLanguage = languages.find(lang => lang.id === learner.favLanguage) // find the favorite language
+    favLangP.textContent = `Favorite Language: ${favLanguage.name}` ; // set the text content of the p element
+
+    [nameP, idElement, dobP, favLangP].forEach(p => card.appendChild(p)) // loop through the p elements and append them to the div element
+
+    card.addEventListener('click', evt => { // add an event listener to the div element
+      document.querySelectorAll('Learner Card').forEach(card => { // loop through all the div elements
+        card.classList.remove('active') // remove the active class from the div element
+      })
+      card.classList.add('active') // add the active class to the div element
+    })
+    return card // return the div element
   }
 
-  {
     // 👉 TASK 2B - Use the two variables below to make learner Cards, and put them in the DOM
 
     let languages = [
@@ -48,13 +72,58 @@ function moduleProject3() {
       { id: 17, fullName: 'Daniel Castillo', dateOfBirth: '1995-11-05', favLanguage: 12 }
     ]
     //  ✨ do your magic here
-  }
+    learners.forEach(learner => { // loop through the learners array
+      const learnerCard = buildLearnerCard(learner, languages) // create a learner card
+      document.querySelector('section').appendChild(learnerCard) // append the learner card to the section element
+    }) // add closing parenthesis for the forEach loop
+  
 
   // 👉 TASK 3 - Write a `buildFooter` component that returns a footer
 
   function buildFooter(footerData) {
     //  ✨ do your magic here
-    return document.createElement('footer')
+    const footer = document.createElement('footer') // create a footer element
+
+    let companyStuff = document.createElement('div') // create a div element
+    companyStuff.classList.add('company-stuff') // add a class to the div element
+
+    let companyName = document.createElement('p') // create a p element
+    companyName.classList.add('company-name') // add a class to the p element
+    companyName.textContent = footerData.companyName // set the text content of the p element
+
+    let address = document.createElement('p') // create a p element
+    address.classList.add('address') // add a class to the p element
+    address.textContent = footerData.address // set the text content of the p element 
+
+    let contactEmail = document.createElement('p') // create a p element
+    contactEmail.classList.add('contact-email') // add a class to the p element
+    contactEmail.innerHTML = `Email: <a href="mailto:${footerData.contactEmail}">${footerData.contactEmail}</a>` // set the text content of the p element
+
+    companyInfoDiv.appendChild(companyName) // append the p element to the div element
+    companyInfoDiv.appendChild(address) // append the p element to the div element
+    companyInfoDiv.appendChild(contactEmail) // append the p element to the div element
+
+    let socialMediaDiv = document.createElement('div') // create a div element
+    socialMediaDiv.classList.add('social-media') // add a class to the div element
+
+    for (let platform in footerData.socialMedia) { // loop through the social media object
+      let socialMediaLink = document.createElement('a') // create an anchor element
+      socialMediaLink.href = footerData.socialMedia[platform] // set the href attribute
+      socialMediaLink.textContent = platform.charAt(0).toUpperCase() + platform.slice(1) 
+      socialMediaDiv.appendChild(socialMediaLink) // append the anchor element to the div element
+    } // add closing parenthesis for the for...in loop
+    
+    let currentYear = new Date().getFullYear() // get the current year
+    let copyRight = document.createElement('div') 
+    copyright.textcontent = `© ${footerData.companyName.toUpperCase()} ${currentYear}`
+
+
+    footer.appendChild(companyInfoDiv)
+    footer.appendChild(socialMediaDiv)
+    footer.appendChild(copyRight)
+
+
+    return footer // return the footer element  
   }
 
   // ❗ DOM creation using your `buildFooter` component (do not change):
