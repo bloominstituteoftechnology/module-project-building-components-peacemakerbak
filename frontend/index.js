@@ -4,11 +4,19 @@ function moduleProject3() {
 
   function buildNav(links) {
     //  ✨ do your magic here
-    return document.createElement('nav')
+    const container = document.createElement('nav') // create a nav element
+    links.forEach(link => { // loop through the links array
+      let a = document.createElement('a') // create an anchor element
+      a.href = link.href // set the href attribute
+      a.title = link.title // set the title attribute
+      a.textContent = link.textContent // set the text content
+      container.appendChild(a) // append the anchor element to the nav element
+    }) // add closing parenthesis for the forEach loop
+      return container // return the nav element
   }
-
-  // ❗ DOM creation using your `buildNav` component (do not change):
-  document.querySelector('header').appendChild(buildNav([
+  
+    // ❗ DOM creation using your `buildNav` component (do not change):
+    document.querySelector('header').appendChild(buildNav([
     { href: 'https://www.example.com', textContent: 'Home', title: 'Go to the home page' },
     { href: 'https://www.example.com/about', textContent: 'About', title: 'Learn more about our company' },
     { href: 'https://www.example.com/services', textContent: 'Services', title: 'View our available services' },
