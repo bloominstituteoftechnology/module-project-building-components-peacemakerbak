@@ -99,9 +99,9 @@ function moduleProject3() {
     contactEmail.classList.add('contact-email') // add a class to the p element
     contactEmail.innerHTML = `Email: <a href="mailto:${footerData.contactEmail}">${footerData.contactEmail}</a>` // set the text content of the p element
 
-    companyInfoDiv.appendChild(companyName) // append the p element to the div element
-    companyInfoDiv.appendChild(address) // append the p element to the div element
-    companyInfoDiv.appendChild(contactEmail) // append the p element to the div element
+    companyStuff.appendChild(companyName) // append the p element to the div element
+    companyStuff.appendChild(address) // append the p element to the div element
+    companyStuff.appendChild(contactEmail) // append the p element to the div element
 
     let socialMediaDiv = document.createElement('div') // create a div element
     socialMediaDiv.classList.add('social-media') // add a class to the div element
@@ -115,10 +115,10 @@ function moduleProject3() {
     
     let currentYear = new Date().getFullYear() // get the current year
     let copyRight = document.createElement('div') 
-    copyright.textcontent = `© ${footerData.companyName.toUpperCase()} ${currentYear}`
+    copyRight.textcontent = `© ${footerData.companyName.toUpperCase()} ${currentYear}`
 
 
-    footer.appendChild(companyInfoDiv)
+    footer.appendChild(companyStuff)
     footer.appendChild(socialMediaDiv)
     footer.appendChild(copyRight)
 
